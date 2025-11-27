@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Trash2, Sparkles } from 'lucide-react';
+import { Trash2, Sparkles, AlertCircle } from 'lucide-react';
 import { ChatBubble } from './components/ChatBubble';
 import { ChatInput } from './components/ChatInput';
 import { streamResponse } from './services/geminiService';
@@ -61,35 +61,42 @@ const App: React.FC = () => {
   };
 
  return (
-  <div className="flex flex-col h-screen w-full bg-slate-950 text-slate-200 overflow-hidden font-sans selection:bg-emerald-500/30">
+  <div className="flex flex-col h-screen w-full bg-[#020617] text-slate-200 overflow-hidden font-sans selection:bg-emerald-500/30 relative">
     
-    {/* Decorative Background Elements */}
-    <div className="fixed top-[-20%] right-[-10%] w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
-    <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
+    {/* Decorative Background Elements - Modernized */}
+    <div className="fixed top-[-20%] right-[-10%] w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
+    <div className="fixed bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
+    <div className="fixed top-[40%] left-[20%] w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[80px] pointer-events-none mix-blend-screen" />
 
     {/* Main Container */}
-    <div className="flex flex-col h-full w-full max-w-4xl mx-auto md:px-6 relative z-10">
+    <div className="flex flex-col h-full w-full max-w-4xl mx-auto md:px-0 relative z-10">
       
       {/* Header */}
-      <header className="flex items-center justify-between p-4 md:pt-6 md:pb-4 border-b border-slate-800/50 backdrop-blur-sm">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 shadow-lg shadow-emerald-900/50">
-            <Sparkles size={24} className="text-white" />
+      <header className="flex items-center justify-between px-6 py-4 md:py-5 bg-slate-950/50 backdrop-blur-md border-b border-slate-800/50 sticky top-0 z-20">
+        <div className="flex items-center gap-4">
+          <div className="relative group">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative p-2.5 rounded-xl bg-slate-900 border border-slate-800 shadow-xl flex items-center justify-center">
+              <Sparkles size={20} className="text-emerald-400" />
+            </div>
           </div>
           <div className="flex flex-col">
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white leading-none">
+            <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
               Worst AI
+              <span className="px-2 py-0.5 rounded-full bg-slate-800/80 text-[10px] text-slate-400 font-medium tracking-wider border border-slate-700/50">
+                LITE
+              </span>
             </h1>
-            <p className="text-slate-400 text-xs font-medium tracking-wide mt-1">
-              Guaranteed Wrong Answers
+            <p className="text-slate-500 text-xs font-medium tracking-wide">
+              Powered by Confidence & Ignorance
             </p>
           </div>
         </div>
 
         <button 
           onClick={clearChat}
-          className="p-2.5 text-slate-400 hover:text-red-400 transition-colors duration-200 
-                     rounded-xl hover:bg-slate-800/50 active:scale-95"
+          className="p-2.5 text-slate-400 hover:text-red-400 transition-all duration-200 
+                     rounded-xl hover:bg-slate-800/50 active:scale-95 border border-transparent hover:border-red-900/30"
           title="Clear Chat"
         >
           <Trash2 size={20} />
@@ -97,35 +104,38 @@ const App: React.FC = () => {
       </header>
 
       {/* Chat Messages */}
-      <main className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth space-y-2">
+      <main className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth space-y-4 md:px-8">
         {messages.map((msg) => (
           <ChatBubble key={msg.id} message={msg} />
         ))}
 
         {loadingState !== LoadingState.IDLE && loadingState !== LoadingState.ERROR && (
-           <div className="flex items-center gap-3 ml-2 text-slate-500 text-sm animate-pulse px-4 py-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-500/50 animate-bounce" style={{ animationDelay: '0ms' }} />
-            <div className="w-2 h-2 rounded-full bg-emerald-500/50 animate-bounce" style={{ animationDelay: '150ms' }} />
-            <div className="w-2 h-2 rounded-full bg-emerald-500/50 animate-bounce" style={{ animationDelay: '300ms' }} />
-            <span className="ml-1 font-medium tracking-wide">Inventing failure...</span>
+           <div className="flex items-center gap-3 ml-2 text-slate-500 text-sm animate-pulse px-4 py-2 opacity-80">
+            <div className="flex space-x-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '0ms' }} />
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '150ms' }} />
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '300ms' }} />
+            </div>
+            <span className="font-medium tracking-wide text-xs uppercase">Generating nonsense...</span>
           </div>
         )}
 
-        <div ref={messagesEndRef} className="h-4" />
+        <div ref={messagesEndRef} className="h-2" />
       </main>
 
       {/* Chat Input & Footer */}
-      <footer className="p-4 pt-2 md:pb-6">
+      <footer className="p-4 md:p-6 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
         <div className="max-w-3xl mx-auto w-full">
           <ChatInput 
             onSend={handleSend}
             disabled={loadingState !== LoadingState.IDLE} 
           />
-          <div className="mt-4 flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity">
-            <p className="text-center text-slate-500 text-[10px] uppercase tracking-widest font-semibold">
-              Do not use for homework, surgery, or real life.
-            </p>
-            <p className="text-center text-emerald-500/50 text-[10px] uppercase tracking-widest font-bold">
+          <div className="mt-6 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity duration-300">
+            <div className="flex items-center gap-1.5 text-slate-500 text-[10px] uppercase tracking-widest font-semibold">
+              <AlertCircle size={10} />
+              <span>Do not trust this AI</span>
+            </div>
+            <p className="text-center text-emerald-500/40 text-[10px] uppercase tracking-[0.2em] font-bold hover:text-emerald-400 transition-colors">
               Credits to ciphernichu
             </p>
           </div>

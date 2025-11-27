@@ -33,21 +33,32 @@
         position: fixed;
         bottom: 12px;
         right: 12px;
-        z-index: 100;
-        opacity: 0.3;
-        transition: opacity 0.3s ease;
+        z-index: 50;
+        opacity: 0.4;
+        transition: all 0.3s ease;
         filter: grayscale(100%);
-        transform: scale(0.8);
+        transform: scale(0.85);
         transform-origin: bottom right;
-        pointer-events: none; /* Let clicks pass through generally */
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(2, 6, 23, 0.5);
+        padding: 4px;
+        border-radius: 4px;
       }
       #visitor-counter:hover {
         opacity: 1;
         filter: grayscale(0%);
         pointer-events: auto;
+        transform: scale(1);
+        background: rgba(2, 6, 23, 0.8);
       }
       #visitor-counter a {
-        display: none; /* Hide the link text for cleaner UI */
+        display: none !important; /* Hide the text link completely */
+        font-size: 0;
+        width: 0;
+        height: 0;
       }
     </style>
   <script type="importmap">
@@ -67,7 +78,11 @@
   <body>
     <div id="root"></div>
     
-     <a  href='https://www.counters-free.net/'>https://www.counters-free.net</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=1f93280ca6df7eb882e949622bdbf060092959df'></script>
-<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1448455/t/5"></script>
+    <!-- Visitor Counter (Hidden text, visible graphic) -->
+    <div id="visitor-counter">
+       <a href='https://www.counters-free.net/'>https://www.counters-free.net</a> 
+       <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=1838e4777710e2fde653241565d37eeb38d147b6'></script>
+       <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1448454/t/5"></script>
+    </div>
   </body>
 </html>
