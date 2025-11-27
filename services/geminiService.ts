@@ -3,7 +3,7 @@ import { MODEL_NAME, SYSTEM_INSTRUCTION } from "../constants";
 import { Message } from "../types";
 
 // Initialize the Gemini API client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: 'AIzaSyBPOuJt4kUbnWc0QGN1WpTUZmWv-2f073o' });
 
 export const streamResponse = async (
   history: Message[],
