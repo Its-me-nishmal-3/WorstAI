@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Worst AI Ever</title>
+    
+    <!-- Suppress Tailwind Production Warning -->
+    <script>
+      (function() {
+        const originalWarn = console.warn;
+        console.warn = function(...args) {
+          // Check all arguments for the specific Tailwind warning string
+          const msg = args.map(arg => String(arg)).join(' ');
+          if (msg.includes('cdn.tailwindcss.com')) {
+            return;
+          }
+          originalWarn.apply(console, args);
+        };
+      })();
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -79,10 +95,6 @@
     <div id="root"></div>
     
     <!-- Visitor Counter (Hidden text, visible graphic) -->
-    <div id="visitor-counter">
-       <a href='https://www.counters-free.net/'>https://www.counters-free.net</a> 
-       <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=1838e4777710e2fde653241565d37eeb38d147b6'></script>
-       <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1448454/t/5"></script>
-    </div>
+ 
   </body>
 </html>
