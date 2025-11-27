@@ -61,22 +61,16 @@ const App: React.FC = () => {
   };
 
  return (
-  <div className="flex flex-col h-screen w-full bg-[#020617] text-slate-200 overflow-hidden font-sans selection:bg-emerald-500/30 relative">
+  <div className="flex flex-col h-screen w-full bg-gradient-to-br from-slate-950 via-[#0a0f1e] to-slate-950 text-slate-200 overflow-hidden font-sans selection:bg-emerald-500/30 relative">
     
-    {/* Decorative Background Elements - Modernized */}
-    <div className="fixed top-[-20%] right-[-10%] w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
-    <div className="fixed bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
-    <div className="fixed top-[40%] left-[20%] w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[80px] pointer-events-none mix-blend-screen" />
-
     {/* Main Container */}
     <div className="flex flex-col h-full w-full max-w-4xl mx-auto md:px-0 relative z-10">
       
       {/* Header */}
-      <header className="flex items-center justify-between px-6 py-4 md:py-5 bg-slate-950/50 backdrop-blur-md border-b border-slate-800/50 sticky top-0 z-20">
+      <header className="flex items-center justify-between px-6 py-4 md:py-5 border-b border-slate-800/30 sticky top-0 z-20 bg-slate-950/20 backdrop-blur-sm">
         <div className="flex items-center gap-4">
           <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
-            <div className="relative p-2.5 rounded-xl bg-slate-900 border border-slate-800 shadow-xl flex items-center justify-center">
+            <div className="relative p-2.5 rounded-xl bg-slate-900/50 border border-slate-700/50 shadow-xl flex items-center justify-center">
               <Sparkles size={20} className="text-emerald-400" />
             </div>
           </div>
@@ -124,7 +118,7 @@ const App: React.FC = () => {
       </main>
 
       {/* Chat Input & Footer */}
-      <footer className="p-4 md:p-6 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
+      <footer className="p-4 md:p-6">
         <div className="max-w-3xl mx-auto w-full">
           <ChatInput 
             onSend={handleSend}
